@@ -9,8 +9,14 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'ng-beginner-docker', url: 'git@github.com:vinayasuresh/ng-beginner.git'
+                git branch: 'ng-beginner-docker', url: 'https://github.com/vinayasuresh/ng-beginner.git'
+            }
+        }
 
+        stage('Debug Workspace') {
+            steps {
+                echo "🔍 Checking files in workspace..."
+                sh 'ls -la'
             }
         }
 
@@ -21,9 +27,11 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-                sh 'docker build -t $DOCKER_IMAGE:$DOCKER_TAG .'
+        stage('Debug Workspace') {
+    steps {
+        echo "🔍 Checking files in workspace..."
+        sh 'ls -la'
+    
             }
         }
 
@@ -37,11 +45,10 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
+                echo "📦 Pushing Docker Image to Docker Hub..."
                 sh 'docker push $DOCKER_IMAGE:$DOCKER_TAG'
             }
         }
-
-        // Optional: Deploy stage (e.g., SSH to server and restart container)
     }
 
     post {
