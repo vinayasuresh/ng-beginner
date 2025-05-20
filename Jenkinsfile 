@@ -9,7 +9,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'git@github.com:vinayasuresh/ng-beginner.git'
+                git branch: 'ng-beginner-docker', url: 'git@github.com:vinayasuresh/ng-beginner.git'
+
             }
         }
 
