@@ -2,7 +2,7 @@ name: Angular CI/CD with Docker
 
 on:
   push:
-    branches: [ main ]
+    branches: [ ng-beginner-docker ]
 
 jobs:
   build:
